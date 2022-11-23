@@ -2,8 +2,6 @@
 
 import pywikibot
 import sqlite3
-#import re
-#import sys
 
 def open_db(name):
     print ('Connecting to',name)
@@ -25,7 +23,6 @@ cinw2 = conn_inwoners.cursor()
 cinw3 = conn_inwoners.cursor()
 sql = 'SELECT DISTINCT(`bag`) FROM `WoonplaatsenMetBag`'
 sql2 = 'SELECT `gwb_code` FROM `bag_regio` WHERE `bag` = ?'    
-sql3 = 'DELETE FROM  `gwb_codes` WHERE `gwb-code` LIKE ?'
 sql3 = 'UPDATE `gwb_codes` SET `bag` = ?,  `voorgekomen` = `voorgekomen` + 1 WHERE `gwb-code` LIKE ?'
     
 res1 = cinw.execute(sql)
@@ -53,5 +50,3 @@ for row in res1.fetchall():
       res3 = cinw3.execute( sql3, query3 )
     
 conn_inwoners.commit()
-
-
